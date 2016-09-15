@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">PetWell</string>
+    <string name="btnLogar">Entrar</string>
+    <string name="msgLogoutFail">Não foi possível realizar o logout </string>
+    <string name="msgLogoutFailTitle">Erro ao realizar o logout </string>
+    <string name="msgLoginFail">Login ou senha incorretos</string>
+    <string name="msgLoginTitle">Falha no Login</string>
+    <string name="msgRegisterFailTitle">Falha no Cadastro</string>
+    <string name="msgRegisterOKTitle">Cadastro</string>
+    <string name="msgRegisterFail">Erro ao efetuar o cadastro</string>
+    <string name="msgRegisterOK">Cadastro efetuado com sucesso</string>
+    <string name="msgConnTimeout">Não foi possível conectar ao servidor</string>
+    <string name="msgConnTimeoutTitle">Falha ao Conectar</string>
+    <string name="txtValue">AppNav</string>
+    <string name="txtSettings">Configurações</string>
+    <string name="drawerOpened">Opened</string>
+    <string name="drawerClosed">Closed</string>
+    <string name="txtRegister">Cadastro</string>
+    <string name="btnRegister">Cadastre-se</string>
+    <string name="edtLoginEmail">Insira seu e-mail</string>
+    <string name="edtLoginSenha">Insira sua senha</string>
+    <string name="btnCadastro">Cadastrar</string>
+    <string name="edtName">Name</string>
+    <string name="edtEmail">E-mail</string>
+    <string name="edtSenha">Senha</string>
+</resources>
