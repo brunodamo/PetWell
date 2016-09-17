@@ -9,10 +9,41 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="This is fragment 1"
+        android:text="@string/txtRegisterAlimentador"
         android:textSize="30dp"
         android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:id="@+id/txtRegisterAlimentador"
         android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edtFeederName"
+        android:layout_below="@+id/txtRegisterAlimentador"
+        android:layout_marginTop="75dp"
+        android:text="@string/txtNomeAlimentador"
+        android:layout_alignStart="@+id/edtDevCode"
+        android:layout_alignEnd="@+id/edtDevCode" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/edtDevCode"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="69dp" />
+        android:text="@string/txtDevCode" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnRegisterAlimentador"
+        android:id="@+id/btnRegisterAlimentador"
+        android:layout_below="@+id/edtDevCode"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:onClick="registerFeeder" />
 </RelativeLayout>

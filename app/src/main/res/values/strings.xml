@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">PetWell</string>
     <string name="btnLogar">Entrar</string>
+    <string name="fragmentRegisterAlimentador">Cadastro de Alimentador</string>
+    <string name="msgFeederOKRegister">Seu alimentador foi registrado com sucesso</string>
+    <string name="msgFeederOKRegisterTitle">Registro do Alimentados </string>
     <string name="msgLogoutFail">Não foi possível realizar o logout </string>
     <string name="msgLogoutFailTitle">Erro ao realizar o logout </string>
     <string name="msgLoginFail">Login ou senha incorretos</string>
@@ -23,4 +26,8 @@
     <string name="edtName">Name</string>
     <string name="edtEmail">E-mail</string>
     <string name="edtSenha">Senha</string>
+    <string name="txtRegisterAlimentador">Cadastro de Alimentador</string>
+    <string name="txtNomeAlimentador">Nome do Alimentador</string>
+    <string name="txtDevCode">Código da Caixa</string>
+    <string name="btnRegisterAlimentador">Registrar</string>
 </resources>

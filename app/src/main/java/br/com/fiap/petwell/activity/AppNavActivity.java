@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -26,6 +27,7 @@ import br.com.fiap.petwell.layout.fragment.Fragment1;
 import br.com.fiap.petwell.layout.fragment.Fragment2;
 import br.com.fiap.petwell.layout.fragment.Fragment3;
 import br.com.fiap.petwell.layout.model.ItemSlideMenu;
+import br.com.fiap.petwell.requesttask.FeederRegisterRequestTask;
 import br.com.fiap.petwell.requesttask.LoginRequestTask;
 import br.com.fiap.petwell.requesttask.LogoutRequestTask;
 import br.com.fiap.petwell.util.hash.HashUtil;
@@ -63,6 +65,7 @@ public class AppNavActivity extends AppCompatActivity {
         listSliding = new ArrayList<>();
 
         //Add item for sliding list_item_style
+        listSliding.add(new ItemSlideMenu(0, getString(R.string.fragmentRegisterAlimentador)));
         listSliding.add(new ItemSlideMenu(R.drawable.ic_settings, getString(R.string.txtSettings) ));
         listSliding.add(new ItemSlideMenu(R.drawable.ic_login_puppy, "Au Au"));
         adp = new SlidingMenuAdapter(this, listSliding);
@@ -135,7 +138,6 @@ public class AppNavActivity extends AppCompatActivity {
         actionBarDrawerToggle.syncState();
     }
     //Create method replace fragment
-
     public void replaceFragment(int pos){
         Fragment fragment = null;
         switch (pos){
@@ -164,5 +166,11 @@ public class AppNavActivity extends AppCompatActivity {
     public void logout(View v){
         LogoutRequestTask logoutRequestTask = new LogoutRequestTask(this);
         logoutRequestTask.execute();
+    }
+
+    public void registerFeeder(View v){
+        String feederName = ((EditText) findViewById(R.id.edtFeederName)).getText().toString();
+        int devCode = Integer.parseInt(((EditText) findViewById(R.id.edtDevCode)).getText().toString());
+        FeederRegisterRequestTask feederRegisterRequestTask = new FeederRegisterRequestTask(this, feederName, devCode);
     }
 }

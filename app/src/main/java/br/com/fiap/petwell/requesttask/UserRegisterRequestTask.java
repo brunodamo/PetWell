@@ -6,22 +6,17 @@ import android.os.AsyncTask;
 
 import com.google.gson.Gson;
 
-import java.io.OutputStreamWriter;
-
 import br.com.fiap.petwell.bean.StatusResponse;
-import br.com.fiap.petwell.repository.RegisterRepository;
+import br.com.fiap.petwell.repository.UserRegisterRepository;
 import br.com.fiap.petwell.util.alert.AlertUtil;
 
-public class RegisterRequestTask extends AsyncTask<Void, Void, String> {
+public class UserRegisterRequestTask extends AsyncTask<Void, Void, String> {
 
     private Activity activity;
-    private boolean loginStatus;
-    private String loginHash;
     private String json;
-    private OutputStreamWriter out;
     private String nome, email, senha;
 
-    public RegisterRequestTask(Activity activity, String nome, String email, String senha) {
+    public UserRegisterRequestTask(Activity activity, String nome, String email, String senha) {
         this.activity = activity;
         this.nome = nome;
         this.email = email;
@@ -34,7 +29,7 @@ public class RegisterRequestTask extends AsyncTask<Void, Void, String> {
     protected String doInBackground(Void... params) {
 
         try {
-            json = RegisterRepository.register(activity,nome,email,senha);
+            json = UserRegisterRepository.register(activity,nome,email,senha);
         } catch (Exception e) {
             e.printStackTrace();
         }

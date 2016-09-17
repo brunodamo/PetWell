@@ -27,6 +27,21 @@ public abstract class AlertUtil {
         );
         alerta.create().show();
     }
+
+    public static void getOKFeederRegisterDialog(Activity activity){
+        AlertDialog.Builder alerta = new AlertDialog.Builder(activity);
+        alerta.setMessage(R.string.msgFeederOKRegister);
+        alerta.setTitle(R.string.msgFeederOKRegisterTitle);
+        alerta.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                }
+        );
+        alerta.create().show();
+    }
+
     public static void getFailRegisterDialog(Activity activity){
         AlertDialog.Builder alerta = new AlertDialog.Builder(activity);
         alerta.setMessage(R.string.msgRegisterFail);
