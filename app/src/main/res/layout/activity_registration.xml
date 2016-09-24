@@ -19,26 +19,15 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+    <TextView
         android:text="@string/edtName"
-        android:ems="10"
-        android:id="@+id/edtName"
-        android:layout_below="@+id/txtRegister"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="76dp" />
-
-    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:id="@+id/edtEmail"
-        android:layout_below="@+id/edtName"
-        android:layout_alignStart="@+id/edtName"
-        android:text="@string/edtEmail" />
+        android:id="@+id/lblRegisterName"
+        android:layout_alignBaseline="@+id/edtName"
+        android:layout_alignBottom="@+id/edtName"
+        android:layout_toStartOf="@+id/edtName"
+        android:layout_marginEnd="20dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -47,17 +36,69 @@
         android:ems="10"
         android:id="@+id/edtSenha"
         android:layout_below="@+id/edtEmail"
-        android:layout_centerHorizontal="true"
-        android:text="@string/edtSenha" />
+        android:layout_alignStart="@+id/edtEmail"
+        android:hint="@string/edtRegisterPassword" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btnCadastro"
         android:id="@+id/btnCadastro"
-        android:layout_below="@+id/edtSenha"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="63dp"
         android:nestedScrollingEnabled="false"
-        android:onClick="cadastrar" />
+        android:onClick="cadastrar"
+        android:layout_below="@+id/edtSenha"
+        android:layout_toStartOf="@+id/txtRegister" />
+
+    <Button
+        android:text="@string/txtRegisterClean"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/btnCadastro"
+        android:layout_toEndOf="@+id/txtRegister"
+        android:layout_marginStart="10dp"
+        android:id="@+id/btnRegisterClean"
+        android:onClick="limpar" />
+
+    <TextView
+        android:text="@string/edtSenha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lblLoginPassword"
+        android:layout_alignBaseline="@+id/edtSenha"
+        android:layout_alignBottom="@+id/edtSenha"
+        android:layout_toStartOf="@+id/edtSenha"
+        android:layout_marginEnd="20dp" />
+
+    <TextView
+        android:text="@string/edtEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/edtEmail"
+        android:layout_alignBottom="@+id/edtEmail"
+        android:layout_toStartOf="@+id/edtEmail"
+        android:layout_marginEnd="20dp"
+        android:id="@+id/lblRegisterEmail" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/edtEmail"
+        android:layout_below="@+id/edtName"
+        android:layout_alignEnd="@+id/btnRegisterClean"
+        android:layout_marginEnd="11dp"
+        android:hint="@string/edtRegisterEmail" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/edtName"
+        android:layout_marginTop="76dp"
+        android:layout_below="@+id/txtRegister"
+        android:layout_alignStart="@+id/edtEmail"
+        android:hint="@string/edtRegisterName" />
 </RelativeLayout>

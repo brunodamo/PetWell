@@ -31,6 +31,12 @@ public class RegistrationActivity extends AppCompatActivity {
         r.execute();
     }
 
+    public void limpar(View v){
+        edtNome.setText("");
+        edtEmail.setText("");
+        edtSenha.setText("");
+    }
+
 }
 
 

@@ -9,36 +9,59 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="br.com.fiap.petwell.activity.LoginActivity">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btnLogar"
-        android:id="@+id/btnLogar"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="106dp"
-        android:nestedScrollingEnabled="true"
-        android:onClick="logar" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btnRegister"
-        android:id="@+id/btnRegister"
-        android:layout_above="@+id/btnLogar"
-        android:layout_centerHorizontal="true"
-        android:onClick="toRegisterActivity" />
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:ems="10"
         android:id="@+id/edtLoginEmail"
-        android:layout_above="@+id/btnRegister"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="106dp"
-        android:text="@string/edtLoginEmail" />
+        android:layout_marginBottom="43dp"
+        android:layout_above="@+id/edtLoginSenha"
+        android:layout_alignStart="@+id/edtLoginSenha"
+        android:hint="@string/edtLoginEmail" />
+
+    <TextView
+        android:text="@string/lblLoginEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lblLoginEmail"
+        android:layout_alignBaseline="@+id/edtLoginEmail"
+        android:layout_alignBottom="@+id/edtLoginEmail"
+        android:layout_toStartOf="@+id/edtLoginEmail"
+        android:layout_marginEnd="20dp" />
+
+    <TextView
+        android:text="@string/lblLoginPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lblLoginPassword"
+        android:layout_alignBaseline="@+id/edtLoginSenha"
+        android:layout_alignBottom="@+id/edtLoginSenha"
+        android:layout_toStartOf="@+id/edtLoginSenha"
+        android:layout_marginEnd="20dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnLogar"
+        android:id="@+id/btnLogar"
+        android:layout_marginBottom="107dp"
+        android:nestedScrollingEnabled="true"
+        android:onClick="logar"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="63dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnRegister"
+        android:id="@+id/btnRegister"
+        android:onClick="toRegisterActivity"
+        android:layout_alignBaseline="@+id/btnLogar"
+        android:layout_alignBottom="@+id/btnLogar"
+        android:layout_toStartOf="@+id/btnLogar"
+        android:layout_marginEnd="34dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -46,7 +69,9 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/edtLoginSenha"
-        android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/edtLoginEmail"
-        android:text="@string/edtLoginSenha" />
+        android:hint="@string/edtLoginSenha"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="81dp"
+        android:layout_above="@+id/btnLogar"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>

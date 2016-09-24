@@ -22,6 +22,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.fiap.petwell.initalizer.AppNavInitializer;
 import br.com.fiap.petwell.layout.adapter.SlidingMenuAdapter;
 import br.com.fiap.petwell.layout.fragment.Fragment1;
 import br.com.fiap.petwell.layout.fragment.Fragment2;
@@ -34,23 +35,16 @@ import br.com.fiap.petwell.util.hash.HashUtil;
 
 public class AppNavActivity extends AppCompatActivity {
 
-    private List<ItemSlideMenu> listSliding;
-    private SlidingMenuAdapter adp;
-    private ListView listView;
-    private DrawerLayout drawerLayout;
+    private AppNavInitializer initializer;
+    private SharedPreferences sharedPreferences;
     private ActionBarDrawerToggle actionBarDrawerToggle;
-
-
-    SharedPreferences sharedPreferences;
-    private TextView textView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appnav);
 
-        HashUtil.setHash(this, "9fa7bf2ce2fa9ebec5a3dcaacb38c4dd");
+        initializer = new AppNavInitializer(this);
 
         sharedPreferences = this.getSharedPreferences("Hash", Context.MODE_PRIVATE);
         String hash = sharedPreferences.getString("Hash", "NO_HASH_FOUND");
@@ -59,65 +53,28 @@ public class AppNavActivity extends AppCompatActivity {
             startActivity(toLoginAct);
         }
 
-        //Init component
-        listView = (ListView) findViewById(R.id.lv_sliding_menu);
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        listSliding = new ArrayList<>();
+        initializer.componentInitializer();
 
-        //Add item for sliding list_item_style
-        listSliding.add(new ItemSlideMenu(0, getString(R.string.fragmentRegisterAlimentador)));
-        listSliding.add(new ItemSlideMenu(R.drawable.ic_settings, getString(R.string.txtSettings) ));
-        listSliding.add(new ItemSlideMenu(R.drawable.ic_login_puppy, "Au Au"));
-        adp = new SlidingMenuAdapter(this, listSliding);
-        listView.setAdapter(adp);
+        initializer.addItemToSliding();
 
         //Display icon to open/close sliding list_item_style
         getSupportActionBar().setDisplayUseLogoEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        initializer.setTitle();
+        initializer.itemSelected();
+        initializer.closeMenu();
 
-        //Set title
-        setTitle(listSliding.get(0).getTitle());
-        //Item selected
-        listView.setItemChecked(0, true);
-        //Close menu
-        drawerLayout.closeDrawer(listView);
-        //Display fragment 1 when start
-        replaceFragment(0);
+        initializer.replaceFragment(0);
 
-        //Handle on item click
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Set title
-                setTitle(listSliding.get(position).getTitle());
-                //Item selected
-                listView.setItemChecked(position, true);
-                //Replace Fragment
-                replaceFragment(position);
-                //Close menu
-                drawerLayout.closeDrawer(listView);
-            }
-        });
+        initializer.handleOnItemClick();
 
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.drawerOpened, R.string.drawerClosed){
+        initializer.actionBarToggle();
 
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-                invalidateOptionsMenu();
-            }
-
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                super.onDrawerClosed(drawerView);
-                invalidateOptionsMenu();
-            }
-        };
-
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        initializer.addDrawerListener();
 
     }
+
 
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.main_menu, menu);
@@ -137,31 +94,7 @@ public class AppNavActivity extends AppCompatActivity {
         super.onPostCreate(savedInstanceState, persistentState);
         actionBarDrawerToggle.syncState();
     }
-    //Create method replace fragment
-    public void replaceFragment(int pos){
-        Fragment fragment = null;
-        switch (pos){
-            case 0 :
-                fragment = new Fragment1();
-                break;
-            case 1 :
-                fragment = new Fragment2();
-                break;
-            case 2 :
-                fragment = new Fragment3();
-                break;
-            default:
-                fragment = new Fragment1();
-                break;
-        }
-        if (null!=fragment){
-            FragmentManager fragmentManager = getFragmentManager();
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.replace(R.id.main_content,fragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
-       }
-    }
+
 
     public void logout(View v){
         LogoutRequestTask logoutRequestTask = new LogoutRequestTask(this);
