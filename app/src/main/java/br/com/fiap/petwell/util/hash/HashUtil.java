@@ -8,25 +8,22 @@ public abstract class HashUtil {
 
     public static void hashClear(Activity activity){
         Context context = activity;
-        SharedPreferences sharedPreferences = context.getSharedPreferences("Hash",Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("Hash", "NO_HASH_FOUND");
-        editor.commit();
+        SharedPreferences sharedPreferences = context.getSharedPreferences("PREF_HASH",Context.MODE_PRIVATE);
+        sharedPreferences.edit().putString("HASH", "NO_HASH_FOUND").commit();
     }
 
     public static String getHash(Activity activity){
         Context context = activity;
-        SharedPreferences sharedPreferences = context.getSharedPreferences("Hash",Context.MODE_PRIVATE);
-        String hash = sharedPreferences.getString("Hash", "NO_HASH_FOUND");
+        SharedPreferences sharedPreferences = context.getSharedPreferences("PREF_HASH",Context.MODE_PRIVATE);
+        sharedPreferences = context.getSharedPreferences("PREF_HASH", Context.MODE_PRIVATE);
+        String hash = sharedPreferences.getString("HASH", "NO_HASH_FOUND");
         return hash;
     }
 
     public static void setHash (Activity activity, String hash) {
         Context context = activity;
-        SharedPreferences sharedPreferences = context.getSharedPreferences("Hash",Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("Hash", hash);
-        editor.commit();
+        SharedPreferences sharedPreferences = context.getSharedPreferences("PREF_HASH",Context.MODE_PRIVATE);
+        sharedPreferences.edit().putString("HASH", hash).commit();
     }
 
 }

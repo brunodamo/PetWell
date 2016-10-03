@@ -2,7 +2,9 @@ package br.com.fiap.petwell.requesttask;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 
 import com.google.gson.Gson;
 
@@ -45,7 +47,7 @@ public class LoginRequestTask extends AsyncTask<Void, Void, String>{
                 }
             }
             }catch (Exception e){
-
+                e.printStackTrace();
             }
         }
     }

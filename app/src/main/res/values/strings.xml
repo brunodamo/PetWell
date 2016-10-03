@@ -15,7 +15,8 @@
     <string name="msgConnTimeout">Não foi possível conectar ao servidor</string>
     <string name="msgConnTimeoutTitle">Falha ao Conectar</string>
     <string name="txtValue">AppNav</string>
-    <string name="txtSettings">Configurações</string>
+    <string name="txtFeederRegister">Registrar Alimentador</string>
+    <string name="txtFeed">Alimentar</string>
     <string name="drawerOpened">Opened</string>
     <string name="drawerClosed">Closed</string>
     <string name="txtRegister">Cadastro</string>
@@ -36,4 +37,10 @@
     <string name="txtNomeAlimentador">Nome do Alimentador</string>
     <string name="txtDevCode">Código da Caixa</string>
     <string name="btnRegisterAlimentador">Registrar</string>
+    <string name="title_activity_app_nav2">AppNav2</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>
