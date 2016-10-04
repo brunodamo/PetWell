@@ -61,7 +61,7 @@ public class AppNavActivity extends AppCompatActivity {
         listSliding = new ArrayList<>();
 
         //Add item for sliding list_item_style
-        listSliding.add(new ItemSlideMenu(android.R.drawable., getString(R.string.txtFeederRegister)));
+        listSliding.add(new ItemSlideMenu(android.R.drawable.ic_menu_add, getString(R.string.txtFeederRegister)));
         listSliding.add(new ItemSlideMenu(R.drawable.ic_login_puppy, getString(R.string.txtFeed)));
         adp = new SlidingMenuAdapter(this, listSliding);
         listView.setAdapter(adp);
