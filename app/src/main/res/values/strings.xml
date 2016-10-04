@@ -17,6 +17,7 @@
     <string name="txtValue">AppNav</string>
     <string name="txtFeederRegister">Registrar Alimentador</string>
     <string name="txtFeed">Alimentar</string>
+    <string name="btnFeed">Alimentar</string>
     <string name="drawerOpened">Opened</string>
     <string name="drawerClosed">Closed</string>
     <string name="txtRegister">Cadastro</string>
