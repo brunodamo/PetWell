@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 
 import com.google.gson.Gson;
 
+import br.com.fiap.petwell.activity.R;
 import br.com.fiap.petwell.bean.StatusResponse;
 import br.com.fiap.petwell.repository.FeederRegisterRepository;
 import br.com.fiap.petwell.util.alert.AlertUtil;
@@ -42,9 +43,9 @@ public class FeederRegisterRequestTask extends AsyncTask<Void, Void, String> {
             }else{
                 StatusResponse statusResponse = new Gson().fromJson(jsonResult, StatusResponse.class);
                 if(statusResponse.isStatus()){
-                    AlertUtil.getOKRegisterDialog(activity);
+                    AlertUtil.ActionlessDialogBuilder(activity, R.string.msgFeederRegisterTitle, R.string.msgFeederRegisterOK);
                 }else{
-                    AlertUtil.getFailRegisterDialog(activity);
+                    AlertUtil.ActionlessDialogBuilder(activity, R.string.msgFeederRegisterTitle, R.string.msgFeederRegisterFail);
                 }
             }
         }catch (Exception e){

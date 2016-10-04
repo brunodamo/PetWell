@@ -10,7 +10,7 @@ import br.com.fiap.petwell.bean.AppNavDomain;
 public abstract class UrlUtil {
 
     private static String url;
-    private static final String CONNECTION_URL = "http:///10.0.2.2:8181/ApiPetWell/rest/";
+    private static final String CONNECTION_URL = "http://10.0.2.2:8181/ApiPetWell/rest/";
 
     public static String getUrl(Activity activity){
         if(activity instanceof LoginActivity){

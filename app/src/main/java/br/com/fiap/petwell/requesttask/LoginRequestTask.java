@@ -2,9 +2,7 @@ package br.com.fiap.petwell.requesttask;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.preference.PreferenceManager;
 
 import com.google.gson.Gson;
 
@@ -12,7 +10,6 @@ import br.com.fiap.petwell.activity.AppNavActivity;
 import br.com.fiap.petwell.bean.StatusResponse;
 import br.com.fiap.petwell.repository.LoginRepository;
 import br.com.fiap.petwell.util.alert.AlertUtil;
-import br.com.fiap.petwell.util.hash.HashUtil;
 
 public class LoginRequestTask extends AsyncTask<Void, Void, String>{
 
@@ -39,9 +36,10 @@ public class LoginRequestTask extends AsyncTask<Void, Void, String>{
             }else {
                 StatusResponse statusResponse = new Gson().fromJson(jsonResponse, StatusResponse.class);
                 if (statusResponse.isStatus()) {
-                    HashUtil.setHash(activity, statusResponse.getHash());
                     Intent toAppNav = new Intent(activity, AppNavActivity.class);
+                    toAppNav.putExtra("HASH", statusResponse.getHashAcesso());
                     activity.startActivity(toAppNav);
+                    activity.finish();
                 } else {
                     AlertUtil.getFailLoginDialog(activity);
                 }

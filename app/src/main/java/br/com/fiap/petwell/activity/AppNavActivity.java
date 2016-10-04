@@ -48,21 +48,28 @@ public class AppNavActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appnav);
 
+        String hash = getIntent().getStringExtra("HASH");
+        HashUtil.setHash(this, hash);
+        if (HashUtil.getHash(this).equals("NO_HASH_FOUND")){
+            Intent toLoginAct = new Intent(this, LoginActivity.class);
+            startActivity(toLoginAct);
+        }
+
         //Init component
         listView = (ListView) findViewById(R.id.lv_sliding_menu);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         listSliding = new ArrayList<>();
 
         //Add item for sliding list_item_style
-        listSliding.add(new ItemSlideMenu(R.drawable.ic_settings, getString(R.string.txtFeederRegister)));
+        listSliding.add(new ItemSlideMenu(android.R.drawable., getString(R.string.txtFeederRegister)));
         listSliding.add(new ItemSlideMenu(R.drawable.ic_login_puppy, getString(R.string.txtFeed)));
         adp = new SlidingMenuAdapter(this, listSliding);
         listView.setAdapter(adp);
 
         //Display icon to open/close sliding list_item_style
+        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         //Set title
         setTitle(listSliding.get(0).getTitle());
@@ -161,5 +168,6 @@ public class AppNavActivity extends AppCompatActivity {
         String feederName = ((EditText) findViewById(R.id.edtFeederName)).getText().toString();
         int devCode = Integer.parseInt(((EditText) findViewById(R.id.edtDevCode)).getText().toString());
         FeederRegisterRequestTask feederRegisterRequestTask = new FeederRegisterRequestTask(this, feederName, devCode);
+        feederRegisterRequestTask.execute();
     }
 }

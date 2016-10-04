@@ -121,4 +121,19 @@ public abstract class AlertUtil {
         );
         alerta.create().show();
     }
+
+    public static void ActionlessDialogBuilder(Activity activity, int title, int message){
+        AlertDialog.Builder alerta = new AlertDialog.Builder(activity);
+        alerta.setMessage(message);
+        alerta.setTitle(title);
+        alerta.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                }
+        );
+        alerta.create().show();
+    }
+
 }

@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/txtRegisterAlimentador"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
         android:id="@+id/txtRegisterAlimentador"
@@ -23,9 +23,9 @@
         android:id="@+id/edtFeederName"
         android:layout_below="@+id/txtRegisterAlimentador"
         android:layout_marginTop="75dp"
-        android:text="@string/txtNomeAlimentador"
         android:layout_alignStart="@+id/edtDevCode"
-        android:layout_alignEnd="@+id/edtDevCode" />
+        android:layout_alignEnd="@+id/edtDevCode"
+        android:hint="@string/txtHintNomeAlimentador" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -35,7 +35,7 @@
         android:id="@+id/edtDevCode"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/txtDevCode" />
+        android:hint="@string/txtHintDevCode" />
 
     <Button
         android:layout_width="wrap_content"

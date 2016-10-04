@@ -3,14 +3,14 @@ package br.com.fiap.petwell.bean;
 public class StatusResponse {
 
     private boolean status;
-    private String hash;
+    private String hashAcesso;
 
-    public String getHash() {
-        return hash;
+    public String getHashAcesso() {
+        return hashAcesso;
     }
 
-    public void setHash(String hash) {
-        this.hash = hash;
+    public void setHashAcesso(String hashAcesso) {
+        this.hashAcesso = hashAcesso;
     }
 
     public boolean isStatus() {
