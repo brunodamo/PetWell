@@ -1,6 +1,7 @@
 package br.com.fiap.petwell.repository;
 
 import android.app.Activity;
+import android.webkit.URLUtil;
 
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.http.converter.json.GsonHttpMessageConverter;
@@ -19,12 +20,10 @@ public abstract class FeedRepository {
     public static String register(Activity activity, int devCode) {
         try {
             RestTemplate restTemplate = new RestTemplate();
-            ((SimpleClientHttpRequestFactory) restTemplate.getRequestFactory()).setConnectTimeout(1000*10);
+           ((SimpleClientHttpRequestFactory) restTemplate.getRequestFactory()).setConnectTimeout(1000*10);
             ((SimpleClientHttpRequestFactory) restTemplate.getRequestFactory()).setReadTimeout(1000*20);
             restTemplate.getMessageConverters().add(new GsonHttpMessageConverter());
-            Alimentador alimentador = restTemplate.getForObject(UrlUtil.getUrlFromAppNav(activity, AppNavDomain.FEEDER_REGISTER)+"/alimentador/"+devCode, Alimentador.class);
-            String url = UrlUtil.getUrl(activity);
-            String json = restTemplate.postForObject(url, alimentador, String.class);
+            String json = restTemplate.postForObject(UrlUtil.getUrlFromAppNav(activity,AppNavDomain.FEED,devCode), null, String.class);
             return json;
         } catch (RestClientException e) {
             return null;

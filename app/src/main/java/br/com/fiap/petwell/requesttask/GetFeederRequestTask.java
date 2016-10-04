@@ -7,11 +7,13 @@ import android.os.AsyncTask;
 import com.google.gson.Gson;
 
 import br.com.fiap.petwell.bean.StatusResponse;
-import br.com.fiap.petwell.repository.FeedRepository;
+import br.com.fiap.petwell.interfaces.AsyncResponse;
+import br.com.fiap.petwell.repository.GetFeederRepository;
 import br.com.fiap.petwell.util.alert.AlertUtil;
 
 public class GetFeederRequestTask extends AsyncTask<Void, Void, String> {
 
+    public AsyncResponse delegate = null;
     private Activity activity;
     private String json;
 
@@ -22,7 +24,7 @@ public class GetFeederRequestTask extends AsyncTask<Void, Void, String> {
     @Override
     protected String doInBackground(Void... params) {
         try {
-            json = FeedRepository.register(activity);
+            json = GetFeederRepository.getFeeders(activity);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -31,19 +33,6 @@ public class GetFeederRequestTask extends AsyncTask<Void, Void, String> {
 
     @Override
     protected void onPostExecute(String jsonResult) {
-        try {
-            if(jsonResult == null){
-                AlertUtil.getConnectionTimeoutDialog(activity);
-            }else{
-                StatusResponse statusResponse = new Gson().fromJson(jsonResult, StatusResponse.class);
-                if(statusResponse.isStatus()){
-                    AlertUtil.getOKRegisterDialog(activity);
-                }else{
-                    AlertUtil.getFailRegisterDialog(activity);
-                }
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        delegate.processFinish(jsonResult);
     }
 }

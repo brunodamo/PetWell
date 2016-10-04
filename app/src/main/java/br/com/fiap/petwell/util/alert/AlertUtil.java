@@ -95,4 +95,30 @@ public abstract class AlertUtil {
         );
         alerta.create().show();
     }
+    public static void getOKFeedDialog(Activity activity){
+        AlertDialog.Builder alerta = new AlertDialog.Builder(activity);
+        alerta.setMessage(R.string.msgFeedOK);
+        alerta.setTitle(R.string.msgFeedOKTitle);
+        alerta.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                }
+        );
+        alerta.create().show();
+    }
+    public static void getFailFeedDialog(Activity activity){
+        AlertDialog.Builder alerta = new AlertDialog.Builder(activity);
+        alerta.setMessage(R.string.msgFeedFail);
+        alerta.setTitle(R.string.msgFeedFailTitle);
+        alerta.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                }
+        );
+        alerta.create().show();
+    }
 }

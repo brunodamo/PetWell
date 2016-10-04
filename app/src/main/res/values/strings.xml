@@ -12,6 +12,10 @@
     <string name="msgRegisterOKTitle">Cadastro</string>
     <string name="msgRegisterFail">Erro ao efetuar o cadastro</string>
     <string name="msgRegisterOK">Cadastro efetuado com sucesso</string>
+    <string name="msgFeedOKTitle">Animal alimentado</string>
+    <string name="msgFeedOK">Animal alimentado com sucesso</string>
+    <string name="msgFeedFail">Erro ao alimentar</string>
+    <string name="msgFeedFailTitle">Erro! O animal não foi alimentado!</string>
     <string name="msgConnTimeout">Não foi possível conectar ao servidor</string>
     <string name="msgConnTimeoutTitle">Falha ao Conectar</string>
     <string name="txtValue">AppNav</string>

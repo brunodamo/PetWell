@@ -62,4 +62,10 @@ public class Alimentador {
     public void setDevCode(int devCode) {
         this.devCode = devCode;
     }
+
+    @Override
+    public String toString(){
+        return this.nome;
+    }
+
 }

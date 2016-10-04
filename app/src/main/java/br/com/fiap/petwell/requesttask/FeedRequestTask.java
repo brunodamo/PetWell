@@ -17,7 +17,6 @@ public class FeedRequestTask extends AsyncTask<Void, Void, String> {
     private Activity activity;
     private String json;
     private int devCode;
-    private String nome;
 
     public FeedRequestTask(Activity activity, int devCode) {
         this.activity = activity;
@@ -43,9 +42,9 @@ public class FeedRequestTask extends AsyncTask<Void, Void, String> {
             }else{
                 StatusResponse statusResponse = new Gson().fromJson(jsonResult, StatusResponse.class);
                 if(statusResponse.isStatus()){
-                    AlertUtil.getOKRegisterDialog(activity);
+                    AlertUtil.getOKFeedDialog(activity);
                 }else{
-                    AlertUtil.getFailRegisterDialog(activity);
+                    AlertUtil.getFailFeedDialog(activity);
                 }
             }
         }catch (Exception e){
