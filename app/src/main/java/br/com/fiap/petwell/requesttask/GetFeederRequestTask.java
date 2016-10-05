@@ -34,7 +34,6 @@ public class GetFeederRequestTask extends AsyncTask<Void, Void, String> {
 
     @Override
     protected void onPostExecute(String jsonResult) {
-        Log.i("jsonResult", jsonResult);
         delegate.processFinish(jsonResult);
     }
 }

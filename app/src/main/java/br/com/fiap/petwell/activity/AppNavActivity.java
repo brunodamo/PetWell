@@ -5,13 +5,11 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,7 +18,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -35,14 +32,14 @@ import br.com.fiap.petwell.layout.fragment.Fragment1;
 import br.com.fiap.petwell.layout.fragment.Fragment2;
 import br.com.fiap.petwell.layout.fragment.Fragment3;
 import br.com.fiap.petwell.layout.model.ItemSlideMenu;
-import br.com.fiap.petwell.repository.GetFeederRepository;
 import br.com.fiap.petwell.requesttask.FeedRequestTask;
 import br.com.fiap.petwell.requesttask.FeederRegisterRequestTask;
 import br.com.fiap.petwell.requesttask.GetFeederRequestTask;
 import br.com.fiap.petwell.requesttask.LogoutRequestTask;
 import br.com.fiap.petwell.util.hash.HashUtil;
+import br.com.fiap.petwell.util.to.DevCodeTO;
 
-public class AppNavActivity extends AppCompatActivity implements AsyncResponse{
+public class AppNavActivity extends AppCompatActivity implements AsyncResponse {
 
 
     private List<ItemSlideMenu> listSliding;
@@ -52,9 +49,8 @@ public class AppNavActivity extends AppCompatActivity implements AsyncResponse{
     private ActionBarDrawerToggle actionBarDrawerToggle;
 
     private List<Alimentador> alimentadores;
-    private Spinner spFeederList;
     private int devCode;
-    private AsyncResponse response;
+    GetFeederRequestTask getFeederRequestTask = new GetFeederRequestTask(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +64,8 @@ public class AppNavActivity extends AppCompatActivity implements AsyncResponse{
             startActivity(toLoginAct);
         }
 
+
         alimentadores = new ArrayList<Alimentador>();
-        spFeederList = (Spinner) findViewById(R.id.spFeeders);
 
         //Init component
         listView = (ListView) findViewById(R.id.lv_sliding_menu);
@@ -188,12 +184,13 @@ public class AppNavActivity extends AppCompatActivity implements AsyncResponse{
     }
 
     private void loadFeeders(){
-        GetFeederRequestTask getFeederRequestTask = new GetFeederRequestTask(this);
+        getFeederRequestTask = new GetFeederRequestTask(this);
+        getFeederRequestTask.delegate = this;
         getFeederRequestTask.execute();
     }
 
     public void feed(View v){
-        FeedRequestTask feedRequestTask = new FeedRequestTask(this, devCode);
+        FeedRequestTask feedRequestTask = new FeedRequestTask(this, DevCodeTO.getDevCode());
         feedRequestTask.execute();
     }
 
@@ -208,4 +205,5 @@ public class AppNavActivity extends AppCompatActivity implements AsyncResponse{
             e.printStackTrace();
         }
     }
+
 }
