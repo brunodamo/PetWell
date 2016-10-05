@@ -22,13 +22,15 @@ public class FeedActivity extends AppCompatActivity implements AsyncResponse, Ad
     private List<Alimentador> alimentadores;
     private Spinner spFeederList;
     private int devCode;
+    private AsyncResponse asyncResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
-        spFeederList = (Spinner) findViewById(R.id.spFeeders);
+
         loadFeeders();
+        spFeederList = (Spinner) findViewById(R.id.spFeeders);
     }
 
     private void loadFeeders(){

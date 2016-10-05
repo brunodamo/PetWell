@@ -16,23 +16,34 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.fiap.petwell.bean.Alimentador;
+import br.com.fiap.petwell.interfaces.AsyncResponse;
 import br.com.fiap.petwell.layout.adapter.SlidingMenuAdapter;
 import br.com.fiap.petwell.layout.fragment.Fragment1;
 import br.com.fiap.petwell.layout.fragment.Fragment2;
 import br.com.fiap.petwell.layout.fragment.Fragment3;
 import br.com.fiap.petwell.layout.model.ItemSlideMenu;
+import br.com.fiap.petwell.repository.GetFeederRepository;
+import br.com.fiap.petwell.requesttask.FeedRequestTask;
 import br.com.fiap.petwell.requesttask.FeederRegisterRequestTask;
+import br.com.fiap.petwell.requesttask.GetFeederRequestTask;
 import br.com.fiap.petwell.requesttask.LogoutRequestTask;
 import br.com.fiap.petwell.util.hash.HashUtil;
 
-public class AppNavActivity extends AppCompatActivity {
+public class AppNavActivity extends AppCompatActivity implements AsyncResponse{
+
 
     private List<ItemSlideMenu> listSliding;
     private SlidingMenuAdapter adp;
@@ -40,8 +51,10 @@ public class AppNavActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
 
-    private SharedPreferences sharedPreferences;
-    private TextView textView;
+    private List<Alimentador> alimentadores;
+    private Spinner spFeederList;
+    private int devCode;
+    private AsyncResponse response;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +67,9 @@ public class AppNavActivity extends AppCompatActivity {
             Intent toLoginAct = new Intent(this, LoginActivity.class);
             startActivity(toLoginAct);
         }
+
+        alimentadores = new ArrayList<Alimentador>();
+        spFeederList = (Spinner) findViewById(R.id.spFeeders);
 
         //Init component
         listView = (ListView) findViewById(R.id.lv_sliding_menu);
@@ -123,7 +139,6 @@ public class AppNavActivity extends AppCompatActivity {
         if(actionBarDrawerToggle.onOptionsItemSelected(item)){
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -142,6 +157,7 @@ public class AppNavActivity extends AppCompatActivity {
                 break;
             case 1 :
                 fragment = new Fragment2();
+                loadFeeders();
                 break;
             case 2 :
                 fragment = new Fragment3();
@@ -169,5 +185,27 @@ public class AppNavActivity extends AppCompatActivity {
         int devCode = Integer.parseInt(((EditText) findViewById(R.id.edtDevCode)).getText().toString());
         FeederRegisterRequestTask feederRegisterRequestTask = new FeederRegisterRequestTask(this, feederName, devCode);
         feederRegisterRequestTask.execute();
+    }
+
+    private void loadFeeders(){
+        GetFeederRequestTask getFeederRequestTask = new GetFeederRequestTask(this);
+        getFeederRequestTask.execute();
+    }
+
+    public void feed(View v){
+        FeedRequestTask feedRequestTask = new FeedRequestTask(this, devCode);
+        feedRequestTask.execute();
+    }
+
+    @Override
+    public void processFinish(String output) {
+        try {
+            alimentadores = new Gson().fromJson(output, new TypeToken<List<Alimentador>>() {}.getType());
+            ArrayAdapter<Alimentador> adapter = new ArrayAdapter<Alimentador>(this, android.R.layout.simple_spinner_item, alimentadores);
+            Spinner spFeeders = (Spinner) findViewById(R.id.spFeeders);
+            spFeeders.setAdapter(adapter);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

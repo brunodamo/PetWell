@@ -3,6 +3,7 @@ package br.com.fiap.petwell.requesttask;
 
 import android.app.Activity;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.google.gson.Gson;
 
@@ -33,6 +34,7 @@ public class GetFeederRequestTask extends AsyncTask<Void, Void, String> {
 
     @Override
     protected void onPostExecute(String jsonResult) {
+        Log.i("jsonResult", jsonResult);
         delegate.processFinish(jsonResult);
     }
 }
