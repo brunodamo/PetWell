@@ -3,7 +3,7 @@ package br.com.fiap.petwell.activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Context;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -49,8 +49,7 @@ public class AppNavActivity extends AppCompatActivity implements AsyncResponse {
     private ActionBarDrawerToggle actionBarDrawerToggle;
 
     private List<Alimentador> alimentadores;
-    private int devCode;
-    GetFeederRequestTask getFeederRequestTask = new GetFeederRequestTask(this);
+    private GetFeederRequestTask getFeederRequestTask = new GetFeederRequestTask(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +114,7 @@ public class AppNavActivity extends AppCompatActivity implements AsyncResponse {
                 invalidateOptionsMenu();
             }
 
+
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
@@ -132,6 +132,19 @@ public class AppNavActivity extends AppCompatActivity implements AsyncResponse {
     }
 
     public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.btnLogout:
+                try{
+                    Intent toLogin = new Intent(this, LoginActivity.class);
+                    startActivity(toLogin);
+                    this.finish();
+                }catch (ActivityNotFoundException anfe){
+                    anfe.printStackTrace();
+                }
+                break;
+            default:
+                break;
+        }
         if(actionBarDrawerToggle.onOptionsItemSelected(item)){
             return true;
         }
@@ -171,7 +184,7 @@ public class AppNavActivity extends AppCompatActivity implements AsyncResponse {
         }
     }
 
-    public void logout(View v){
+    public void logout(){
         LogoutRequestTask logoutRequestTask = new LogoutRequestTask(this);
         logoutRequestTask.execute();
     }
@@ -205,5 +218,12 @@ public class AppNavActivity extends AppCompatActivity implements AsyncResponse {
             e.printStackTrace();
         }
     }
-
+    /*@Override
+    public void onLogoutRequestFinish(boolean response){
+        if (response){
+            Intent toLogin = new Intent(this, LoginActivity.class){}
+        }else{
+            AlertUtil.getFailLogoutDialog(this);
+        }
+    }*/
 }
